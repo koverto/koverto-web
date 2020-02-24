@@ -1,0 +1,23 @@
+{
+  "name": "koverto",
+  "version": "0.1.0",
+  "description": "Web client for Koverto",
+  "author": {
+    "name": "Jesse B. Hannah",
+    "email": "jesse@jbhannah.net",
+    "url": "https://jbhannah.net"
+  },
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://github.com/koverto/koverto-web",
+  "private": true,
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/koverto/koverto-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/koverto/koverto-web/issues"
+  }
+}
