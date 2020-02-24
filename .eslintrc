@@ -1,6 +1,10 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "plugins": ["@typescript-eslint", "prettier", "react"],
   "extends": [
     "eslint:recommended",
@@ -16,5 +20,13 @@
     "react": {
       "version": "detect"
     }
-  }
+  },
+  "overrides": [
+    {
+      "files": ["config/webpack.*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
 }
