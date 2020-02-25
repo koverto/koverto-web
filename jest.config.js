@@ -125,7 +125,11 @@ module.exports = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  setupFiles: ["jest-fetch-mock", "jest-localstorage-mock"],
+  setupFiles: [
+    "<rootDir>/jest.setup.ts",
+    "jest-fetch-mock",
+    "jest-localstorage-mock",
+  ],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],

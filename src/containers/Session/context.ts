@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, createContext } from "react"
+import { Dispatch, SetStateAction, createContext, useContext } from "react"
 import { ServerError } from "apollo-link-http-common"
 import { ErrorResponse } from "apollo-link-error"
 import { SessionProviderProps } from "./provider"
@@ -41,4 +41,14 @@ export class Session implements SessionProps {
   }
 }
 
-export const SessionContext = createContext<Session>(new Session())
+export const SessionContext = createContext<Session | undefined>(undefined)
+
+export const useSession = (): Session => {
+  const session = useContext(SessionContext)
+
+  if (session === undefined) {
+    throw new Error("useSession must be used within a SessionProvider")
+  }
+
+  return session
+}

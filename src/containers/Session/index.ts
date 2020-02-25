@@ -1,2 +1,2 @@
 export { SessionProvider } from "./provider"
-export { SessionContext } from "./context"
+export { useSession } from "./context"

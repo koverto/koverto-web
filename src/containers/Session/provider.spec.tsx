@@ -1,5 +1,5 @@
 import * as React from "react"
-import { SessionContext } from "./context"
+import { useSession } from "./context"
 import { render as _render, RenderResult } from "@testing-library/react"
 import { SessionProvider } from "./provider"
 import gql from "graphql-tag"
@@ -14,9 +14,7 @@ const TEST_QUERY = gql`
 `
 
 const Component = (): JSX.Element => {
-  const { basePath, loginPath, isLoggedIn, setToken } = React.useContext(
-    SessionContext
-  )
+  const { basePath, loginPath, isLoggedIn, setToken } = useSession()
   useQuery(TEST_QUERY)
 
   const toggleToken = (): void => setToken(isLoggedIn() ? null : "token")

@@ -1,5 +1,7 @@
-import { Session } from "./context"
+import * as React from "react"
+import { Session, useSession } from "./context"
 import { ErrorResponse } from "apollo-link-error"
+import { render } from "@testing-library/react"
 
 const errorResponse = (statusCode: number = null): ErrorResponse => {
   const err: ErrorResponse = {
@@ -47,5 +49,19 @@ describe("Session", () => {
       session.handleError(errorResponse())
       expect(session.setToken).not.toBeCalled()
     })
+  })
+})
+
+const Component = (): JSX.Element => {
+  useSession()
+
+  return <div />
+}
+
+describe("useSession", () => {
+  it("throws if called outside of a SessionProvider", () => {
+    expect(() => {
+      render(<Component />)
+    }).toThrow("useSession must be used within a SessionProvider")
   })
 })
