@@ -1,13 +1,11 @@
 import { ApolloLink } from "apollo-link"
-import { ContextSetter } from "apollo-link-context"
+import { ContextSetter, setContext } from "apollo-link-context"
 
 export class AuthLink extends ApolloLink {
-  private tokenGetter: () => string
-
-  constructor(tokenGetter: () => string) {
+  constructor(private tokenGetter: () => string) {
     super()
 
-    this.tokenGetter = tokenGetter
+    this.request = setContext(this.setHeaders).request
   }
 
   public setHeaders: ContextSetter = (_, { headers = {} }) => {
