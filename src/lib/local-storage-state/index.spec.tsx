@@ -6,7 +6,7 @@ import { toggleState } from "../toggle-state"
 const Component = (): JSX.Element => {
   const [value, setValue] = useStateFromLocalStorage("valueKey", "initial")
   const [toggle, setToggle] = useStateFromLocalStorage("toggleKey", false)
-  const noInitial = useStateFromLocalStorage("noInitialKey")[0]
+  const [noInitial] = useStateFromLocalStorage("noInitialKey")
 
   const handleValueClick = (): void => setValue("clicked")
 
