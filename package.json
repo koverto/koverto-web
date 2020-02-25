@@ -27,10 +27,17 @@
     "test": "jest"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.3",
     "@types/react-router-dom": "^5.1.3",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
     "apollo-link": "^1.2.13",
     "apollo-link-context": "^1.0.19",
+    "apollo-link-error": "^1.1.12",
+    "apollo-link-http": "^1.5.16",
+    "apollo-link-http-common": "^0.2.15",
     "graphql": "^14.6.0",
+    "graphql-tag": "^2.10.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2"
@@ -51,6 +58,7 @@
     "html-webpack-plugin": "^3.2.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "jest-fetch-mock": "^3.0.1",
     "jest-localstorage-mock": "^2.4.0",
     "prettier": "^1.19.1",
     "ts-jest": "^25.2.1",
