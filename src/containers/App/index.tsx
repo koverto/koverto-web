@@ -7,11 +7,13 @@ import { SessionProvider } from "../Session"
 
 export const App = (): JSX.Element => {
   return (
-    <SessionProvider>
-      <BrowserRouter>
-        <ProtectedRoute authRequired exact path="/" component={Dashboard} />
-        <ProtectedRoute path="/login" component={Login} />
-      </BrowserRouter>
-    </SessionProvider>
+    <React.StrictMode>
+      <SessionProvider>
+        <BrowserRouter>
+          <ProtectedRoute authRequired exact path="/" component={Dashboard} />
+          <ProtectedRoute path="/login" component={Login} />
+        </BrowserRouter>
+      </SessionProvider>
+    </React.StrictMode>
   )
 }
