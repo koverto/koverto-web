@@ -1,6 +1,6 @@
 {
   "hooks": {
-    "pre-commit": "npm run lint && npm test",
-    "pre-push": "npm run lint && npm test"
+    "pre-commit": "git stash push -ku && npm run lint && npm test && git stash pop",
+    "pre-push": "git stash push -u && npm run lint && npm test && git stash pop"
   }
 }
