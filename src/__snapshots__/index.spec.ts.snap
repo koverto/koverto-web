@@ -4,8 +4,28 @@ exports[`entrypoint renders the app container 1`] = `
 <div
   id="app"
 >
-  <h1>
-    Login
-  </h1>
+  <div>
+    <h1>
+      Login
+    </h1>
+    <form>
+      <input
+        data-testid="email"
+        name="email"
+        type="email"
+      />
+      <input
+        data-testid="password"
+        name="password"
+        type="password"
+      />
+      <button
+        data-testid="submit"
+        type="submit"
+      >
+        Login
+      </button>
+    </form>
+  </div>
 </div>
 `;
