@@ -16,4 +16,4 @@ export const useMutation = <T extends Mutation<unknown, unknown>>(
   mutation: T,
   options: MutationHookOptions<OperationData<T>, OperationVariables<T>> = null
 ): MutationTuple<OperationData<T>, OperationVariables<T>> =>
-  _useMutation(mutation.statement, options)
+  _useMutation(mutation.statement, { onError: () => null, ...options })
