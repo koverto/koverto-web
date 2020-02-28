@@ -1,7 +1,7 @@
+import { render } from "@testing-library/react"
+import { ErrorResponse } from "apollo-link-error"
 import * as React from "react"
 import { Session, useSession } from "./context"
-import { ErrorResponse } from "apollo-link-error"
-import { render } from "@testing-library/react"
 
 const errorResponse = (statusCode: number = null): ErrorResponse => {
   const err: ErrorResponse = {

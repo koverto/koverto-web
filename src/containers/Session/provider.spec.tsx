@@ -1,9 +1,9 @@
+import { useQuery } from "@apollo/react-hooks"
+import { render as _render, RenderResult } from "@testing-library/react"
+import gql from "graphql-tag"
 import * as React from "react"
 import { useSession } from "./context"
-import { render as _render, RenderResult } from "@testing-library/react"
 import { SessionProvider } from "./provider"
-import gql from "graphql-tag"
-import { useQuery } from "@apollo/react-hooks"
 
 const TEST_QUERY = gql`
   {

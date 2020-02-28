@@ -1,6 +1,6 @@
+import { render } from "@testing-library/react"
 import * as React from "react"
 import { toggleState } from "."
-import { render } from "@testing-library/react"
 
 const Component = (): JSX.Element => {
   const [toggle, setToggle] = React.useState(false)

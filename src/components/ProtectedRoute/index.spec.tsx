@@ -1,8 +1,8 @@
-import * as React from "react"
-import { Session, SessionContext } from "../../containers/Session/context"
 import { render } from "@testing-library/react"
+import * as React from "react"
 import { MemoryRouter } from "react-router-dom"
 import { ProtectedRoute } from "."
+import { Session, SessionContext } from "../../containers/Session/context"
 
 const AuthedComponent = (): JSX.Element => <div>Authenticated</div>
 const UnauthedComponent = (): JSX.Element => <div>Unauthenticated</div>
