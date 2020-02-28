@@ -10,8 +10,8 @@ export interface Credential {
 }
 
 export enum CredentialType {
-  "NONE",
-  "PASSWORD",
+  "NONE" = "NONE",
+  "PASSWORD" = "PASSWORD",
 }
 
 export interface LoginResponse {
