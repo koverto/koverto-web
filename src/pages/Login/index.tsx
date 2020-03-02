@@ -1,8 +1,8 @@
 import gql from "graphql-tag"
 import * as React from "react"
+import { MutationFunction, useMutation } from "react-apollo-typed-hooks"
 import { OnSubmit } from "react-hook-form"
 import { useSession } from "../../containers/Session"
-import { MutationFunction, useMutation } from "../../lib/apollo-hooks"
 import { CredentialType, Mutation } from "../../lib/koverto"
 import { LoginForm, LoginFormData } from "./form"
 

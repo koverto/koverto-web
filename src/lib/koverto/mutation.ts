@@ -1,4 +1,4 @@
-import { Mutation } from "../apollo-hooks"
+import { Mutation } from "react-apollo-typed-hooks"
 import { Authentication, LoginResponse, User, UserInput } from "./schema"
 
 export class CreateUser extends Mutation<
