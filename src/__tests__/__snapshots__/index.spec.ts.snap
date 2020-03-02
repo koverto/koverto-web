@@ -13,6 +13,7 @@ exports[`entrypoint renders the app container 1`] = `
         <input
           data-testid="email"
           name="email"
+          placeholder="E-mail address"
           type="email"
         />
       </div>
@@ -20,6 +21,7 @@ exports[`entrypoint renders the app container 1`] = `
         <input
           data-testid="password"
           name="password"
+          placeholder="Password"
           type="password"
         />
       </div>

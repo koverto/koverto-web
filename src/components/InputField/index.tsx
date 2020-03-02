@@ -6,15 +6,20 @@ export interface InputFieldProps
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   > {
+  label?: string
   error?: FieldError
 }
 
 const inputField = (
-  { name, error, ...rest }: InputFieldProps,
+  { name, label, error, ...rest }: InputFieldProps,
   ref: React.Ref<HTMLInputElement>
 ): JSX.Element => (
   <div>
-    <input data-testid={name} {...{ name, ref, ...rest }} />
+    <input
+      data-testid={name}
+      placeholder={label || name}
+      {...{ name, ref, ...rest }}
+    />
     {error && <span data-testid={`${name}-error`}>{error.message}</span>}
   </div>
 )

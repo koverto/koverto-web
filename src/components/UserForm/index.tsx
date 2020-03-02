@@ -8,6 +8,12 @@ export enum UserFormFields {
   "PASSWORD" = "password",
 }
 
+const userFormFieldLabels = {
+  [UserFormFields.EMAIL]: "E-mail address",
+  [UserFormFields.NAME]: "Name",
+  [UserFormFields.PASSWORD]: "Password",
+}
+
 const userFormFieldTypes = {
   [UserFormFields.EMAIL]: "email",
   [UserFormFields.NAME]: "text",
@@ -33,6 +39,7 @@ const fieldForKey = (
 ) => (key: string): JSX.Element => (
   <InputField
     name={key}
+    label={userFormFieldLabels[key]}
     type={userFormFieldTypes[key]}
     error={errors[key]}
     ref={ref}
