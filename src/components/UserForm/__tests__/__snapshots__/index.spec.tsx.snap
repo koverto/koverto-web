@@ -5,16 +5,16 @@ exports[`UserForm matches the snapshot 1`] = `
   <form>
     <div>
       <input
-        data-testid="name"
-        name="name"
-        type="text"
+        data-testid="email"
+        name="email"
+        type="email"
       />
     </div>
     <div>
       <input
-        data-testid="email"
-        name="email"
-        type="email"
+        data-testid="name"
+        name="name"
+        type="text"
       />
     </div>
     <div>

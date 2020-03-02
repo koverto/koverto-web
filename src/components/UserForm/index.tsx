@@ -1,10 +1,17 @@
 import * as React from "react"
-import { OnSubmit, useForm } from "react-hook-form"
+import { FieldErrors, OnSubmit, useForm } from "react-hook-form"
+import { InputField } from "../InputField"
 
 export enum UserFormFields {
-  "EMAIL",
-  "NAME",
-  "PASSWORD",
+  "EMAIL" = "email",
+  "NAME" = "name",
+  "PASSWORD" = "password",
+}
+
+const userFormFieldTypes = {
+  [UserFormFields.EMAIL]: "email",
+  [UserFormFields.NAME]: "text",
+  [UserFormFields.PASSWORD]: "password",
 }
 
 export interface UserFormData {
@@ -20,6 +27,24 @@ interface UserFormProps {
   onSubmit: OnSubmit<UserFormData>
 }
 
+const fieldForKey = (
+  errors: FieldErrors<UserFormData>,
+  ref: React.Ref<HTMLInputElement>
+) => (key: string): JSX.Element => (
+  <InputField
+    name={key}
+    type={userFormFieldTypes[key]}
+    error={errors[key]}
+    ref={ref}
+    key={key}
+  />
+)
+
+const inputsForFields = (
+  fields: UserFormFields[],
+  mapper: (key: string) => JSX.Element
+): JSX.Element[] => fields.map(mapper)
+
 export const UserForm = ({
   fields,
   label,
@@ -27,50 +52,12 @@ export const UserForm = ({
   onSubmit,
 }: UserFormProps): JSX.Element => {
   const { register, handleSubmit, errors } = useForm<UserFormData>()
+  const ref = register({ required: true })
+  const inputs = inputsForFields(fields, fieldForKey(errors, ref))
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {fields.includes(UserFormFields.NAME) && (
-        <div>
-          <input
-            name="name"
-            type="text"
-            data-testid="name"
-            ref={register({ required: true })}
-          />
-          {errors.name && (
-            <span data-testid="name-error">Name is required</span>
-          )}
-        </div>
-      )}
-
-      {fields.includes(UserFormFields.EMAIL) && (
-        <div>
-          <input
-            name="email"
-            type="email"
-            data-testid="email"
-            ref={register({ required: true })}
-          />
-          {errors.email && (
-            <span data-testid="email-error">E-mail address is required</span>
-          )}
-        </div>
-      )}
-
-      {fields.includes(UserFormFields.PASSWORD) && (
-        <div>
-          <input
-            name="password"
-            type="password"
-            data-testid="password"
-            ref={register({ required: true })}
-          />
-          {errors.password && (
-            <span data-testid="password-error">Password is required</span>
-          )}
-        </div>
-      )}
+      {inputs}
 
       <button type="submit" disabled={loading} data-testid="submit">
         {label}
