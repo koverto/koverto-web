@@ -7,16 +7,20 @@ exports[`Login matches the snapshot 1`] = `
       Login
     </h1>
     <form>
-      <input
-        data-testid="email"
-        name="email"
-        type="email"
-      />
-      <input
-        data-testid="password"
-        name="password"
-        type="password"
-      />
+      <div>
+        <input
+          data-testid="email"
+          name="email"
+          type="email"
+        />
+      </div>
+      <div>
+        <input
+          data-testid="password"
+          name="password"
+          type="password"
+        />
+      </div>
       <button
         data-testid="submit"
         type="submit"

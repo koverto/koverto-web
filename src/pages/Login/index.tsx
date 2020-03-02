@@ -2,9 +2,13 @@ import gql from "graphql-tag"
 import * as React from "react"
 import { MutationFunction, useMutation } from "react-apollo-typed-hooks"
 import { OnSubmit } from "react-hook-form"
+import {
+  UserForm,
+  UserFormData,
+  UserFormFields,
+} from "../../components/UserForm"
 import { useSession } from "../../containers/Session"
 import { CredentialType, Mutation } from "../../lib/koverto"
-import { LoginForm, LoginFormData } from "./form"
 
 export const QUERY = gql`
   mutation Login($input: Authentication!) {
@@ -23,7 +27,7 @@ const LOGIN = new Mutation.Login(QUERY)
 
 export const onSubmit = (
   login: MutationFunction<Mutation.Login>
-): OnSubmit<LoginFormData> => ({ email, password }): void => {
+): OnSubmit<UserFormData> => ({ email, password }): void => {
   const user = { email }
   const credential = {
     credentialType: CredentialType.PASSWORD,
@@ -43,7 +47,12 @@ export const Login = (): JSX.Element => {
     <div>
       <h1>Login</h1>
       {error && <span data-testid="login-error">{error.message}</span>}
-      <LoginForm loading={loading} onSubmit={onSubmit(login)} />
+      <UserForm
+        fields={[UserFormFields.EMAIL, UserFormFields.PASSWORD]}
+        label="Login"
+        loading={loading}
+        onSubmit={onSubmit(login)}
+      />
     </div>
   )
 }
