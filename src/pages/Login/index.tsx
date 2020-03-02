@@ -2,6 +2,7 @@ import gql from "graphql-tag"
 import * as React from "react"
 import { MutationFunction, useMutation } from "react-apollo-typed-hooks"
 import { OnSubmit } from "react-hook-form"
+import { Link } from "react-router-dom"
 import {
   UserForm,
   UserFormData,
@@ -53,6 +54,7 @@ export const Login = (): JSX.Element => {
         loading={loading}
         onSubmit={onSubmit(login)}
       />
+      <Link to="/sign-up">Sign up</Link>
     </div>
   )
 }

@@ -30,6 +30,11 @@ exports[`entrypoint renders the app container 1`] = `
         Login
       </button>
     </form>
+    <a
+      href="/sign-up"
+    >
+      Sign up
+    </a>
   </div>
 </div>
 `;

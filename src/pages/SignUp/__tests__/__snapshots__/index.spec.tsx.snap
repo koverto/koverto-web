@@ -35,6 +35,11 @@ exports[`SignUp matches the snapshot 1`] = `
         Sign Up
       </button>
     </form>
+    <a
+      href="/login"
+    >
+      Login
+    </a>
   </div>
 </div>
 `;

@@ -6,6 +6,7 @@ import {
   waitForElement,
 } from "@testing-library/react"
 import * as React from "react"
+import { MemoryRouter } from "react-router-dom"
 import { onSubmit as _onSubmit, QUERY, SignUp } from ".."
 import { Session, SessionContext } from "../../../containers/Session/context"
 import { CredentialType } from "../../../lib/koverto"
@@ -55,7 +56,9 @@ const render = (result = {}): RenderResult =>
           },
         ]}
       >
-        <SignUp />
+        <MemoryRouter>
+          <SignUp />
+        </MemoryRouter>
       </MockedProvider>
     </SessionContext.Provider>
   )

@@ -28,6 +28,11 @@ exports[`App matches the snapshot 1`] = `
         Login
       </button>
     </form>
+    <a
+      href="/sign-up"
+    >
+      Sign up
+    </a>
   </div>
 </div>
 `;
