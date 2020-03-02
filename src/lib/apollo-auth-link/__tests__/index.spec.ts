@@ -1,4 +1,4 @@
-import { AuthLink } from "."
+import { AuthLink } from ".."
 
 const token = [
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",

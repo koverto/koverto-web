@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react"
 import * as React from "react"
-import { useStateFromLocalStorage } from "."
-import { toggleState } from "../toggle-state"
+import { useStateFromLocalStorage } from ".."
+import { toggleState } from "../../toggle-state"
 
 const Component = (): JSX.Element => {
   const [value, setValue] = useStateFromLocalStorage("valueKey", "initial")

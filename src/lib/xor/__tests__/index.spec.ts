@@ -1,4 +1,4 @@
-import { xor } from "."
+import { xor } from ".."
 
 describe("xor", () => {
   test("true ^^ true === false", () => {

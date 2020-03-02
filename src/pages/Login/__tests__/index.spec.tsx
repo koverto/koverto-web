@@ -6,9 +6,9 @@ import {
   waitForElement,
 } from "@testing-library/react"
 import * as React from "react"
-import { Login, onSubmit as _onSubmit, QUERY } from "."
-import { Session, SessionContext } from "../../containers/Session/context"
-import { CredentialType } from "../../lib/koverto"
+import { Login, onSubmit as _onSubmit, QUERY } from ".."
+import { Session, SessionContext } from "../../../containers/Session/context"
+import { CredentialType } from "../../../lib/koverto"
 
 describe("onSubmit", () => {
   const login = jest.fn()

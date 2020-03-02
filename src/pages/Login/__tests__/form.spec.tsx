@@ -5,7 +5,7 @@ import {
   waitForElement,
 } from "@testing-library/react"
 import * as React from "react"
-import { LoginForm } from "./form"
+import { LoginForm } from "../form"
 
 const onSubmit = jest.fn()
 

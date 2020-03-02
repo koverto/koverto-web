@@ -3,7 +3,7 @@ import { act } from "@testing-library/react"
 describe("entrypoint", () => {
   it("renders the app container", () => {
     act(() => {
-      require("./index")
+      require("../index")
     })
     const app = document.getElementById("app")
 
