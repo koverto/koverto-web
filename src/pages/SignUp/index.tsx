@@ -45,20 +45,18 @@ export const SignUp = (): JSX.Element => {
   data?.createUser?.token && setToken(data.createUser.token)
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <UserForm
+      fields={[
+        UserFormFields.NAME,
+        UserFormFields.EMAIL,
+        UserFormFields.PASSWORD,
+      ]}
+      label="Sign Up"
+      loading={loading}
+      onSubmit={onSubmit(signUp)}
+    >
       {error && <span data-testid="signup-error">{error.message}</span>}
-      <UserForm
-        fields={[
-          UserFormFields.NAME,
-          UserFormFields.EMAIL,
-          UserFormFields.PASSWORD,
-        ]}
-        label="Sign Up"
-        loading={loading}
-        onSubmit={onSubmit(signUp)}
-      />
       <Link to="/login">Login</Link>
-    </div>
+    </UserForm>
   )
 }

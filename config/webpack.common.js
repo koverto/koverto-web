@@ -5,14 +5,18 @@ const path = require("path")
 module.exports = {
   context: path.resolve(__dirname, ".."),
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    extensions: [".css", ".js", ".jsx", ".ts", ".tsx"],
   },
   devtool: "source-map",
   module: {
     rules: [
       {
+        test: /\.css$/,
+        use: ["style-loader", "astroturf/css-loader"],
+      },
+      {
         test: /\.tsx?$/,
-        loader: "ts-loader",
+        use: ["ts-loader", "astroturf/loader"],
       },
     ],
   },

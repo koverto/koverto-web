@@ -45,16 +45,14 @@ export const Login = (): JSX.Element => {
   data?.login?.token && setToken(data.login.token)
 
   return (
-    <div>
-      <h1>Login</h1>
+    <UserForm
+      fields={[UserFormFields.EMAIL, UserFormFields.PASSWORD]}
+      label="Login"
+      loading={loading}
+      onSubmit={onSubmit(login)}
+    >
       {error && <span data-testid="login-error">{error.message}</span>}
-      <UserForm
-        fields={[UserFormFields.EMAIL, UserFormFields.PASSWORD]}
-        label="Login"
-        loading={loading}
-        onSubmit={onSubmit(login)}
-      />
       <Link to="/sign-up">Sign up</Link>
-    </div>
+    </UserForm>
   )
 }

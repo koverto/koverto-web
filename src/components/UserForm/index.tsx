@@ -57,18 +57,30 @@ export const UserForm = ({
   label,
   loading,
   onSubmit,
-}: UserFormProps): JSX.Element => {
+  children,
+}: React.PropsWithChildren<UserFormProps>): JSX.Element => {
   const { register, handleSubmit, errors } = useForm<UserFormData>()
   const ref = register({ required: true })
   const inputs = inputsForFields(fields, fieldForKey(errors, ref))
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {inputs}
+    <div className="self-center w-full max-w-xs">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
+        {inputs}
 
-      <button type="submit" disabled={loading} data-testid="submit">
-        {label}
-      </button>
-    </form>
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          disabled={loading}
+          data-testid="submit"
+        >
+          {label}
+        </button>
+        {children}
+      </form>
+    </div>
   )
 }
