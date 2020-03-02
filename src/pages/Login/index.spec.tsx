@@ -36,6 +36,7 @@ const render = (result = {}): RenderResult =>
   _render(
     <SessionContext.Provider value={new Session({ setToken })}>
       <MockedProvider
+        addTypename={false}
         mocks={[
           {
             request: {

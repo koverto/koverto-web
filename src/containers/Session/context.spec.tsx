@@ -59,6 +59,14 @@ const Component = (): JSX.Element => {
 }
 
 describe("useSession", () => {
+  beforeAll(() => {
+    console.error = jest.fn()
+  })
+
+  afterAll(() => {
+    jest.resetAllMocks()
+  })
+
   it("throws if called outside of a SessionProvider", () => {
     expect(() => {
       render(<Component />)
