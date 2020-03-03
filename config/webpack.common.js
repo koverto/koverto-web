@@ -12,7 +12,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "astroturf/css-loader"],
+        use: ["style-loader", "postcss-loader"],
       },
       {
         test: /\.tsx?$/,
