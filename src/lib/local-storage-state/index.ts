@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, Reducer, useReducer } from "react"
+import { Dispatch, Reducer, SetStateAction, useReducer } from "react"
 
 export const useStateFromLocalStorage = <T>(
   key: string,
@@ -6,7 +6,11 @@ export const useStateFromLocalStorage = <T>(
 ): [T, Dispatch<SetStateAction<T>>] => {
   const reducer: Reducer<T, SetStateAction<T>> = (previousValue, action) => {
     const newValue = action instanceof Function ? action(previousValue) : action
-    localStorage.setItem(key, JSON.stringify(newValue))
+
+    newValue === undefined
+      ? localStorage.removeItem(key)
+      : localStorage.setItem(key, JSON.stringify(newValue))
+
     return newValue
   }
 

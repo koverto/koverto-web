@@ -6,9 +6,11 @@ import { toggleState } from "../../toggle-state"
 const Component = (): JSX.Element => {
   const [value, setValue] = useStateFromLocalStorage("valueKey", "initial")
   const [toggle, setToggle] = useStateFromLocalStorage("toggleKey", false)
+  const [, setClear] = useStateFromLocalStorage("clearKey", "exists")
   const [noInitial] = useStateFromLocalStorage("noInitialKey")
 
   const handleValueClick = (): void => setValue("clicked")
+  const handleClearClick = (): void => setClear(undefined)
 
   return (
     <div>
@@ -21,6 +23,7 @@ const Component = (): JSX.Element => {
         <button type="button" onClick={toggleState(setToggle)} />
       </div>
       <div data-testid="noInitial">{`${noInitial}`}</div>
+      <button data-testid="clear" type="button" onClick={handleClearClick} />
     </div>
   )
 }
@@ -76,27 +79,41 @@ describe("useStateFromLocalStorage", () => {
 
   describe("with a callback action", () => {
     it("sets the new value from the callback", () => {
-      const component = render(<Component />)
+      const { getByTestId } = render(<Component />)
 
-      component
-        .getByTestId("toggle")
+      getByTestId("toggle")
         .querySelector("button")
         .click()
       expect(localStorage.setItem).toBeCalledWith(
         "toggleKey",
         JSON.stringify(true)
       )
-      expect(component.getByTestId("toggle").textContent).toBe("true")
+      expect(getByTestId("toggle").textContent).toBe("true")
 
-      component
-        .getByTestId("toggle")
+      getByTestId("toggle")
         .querySelector("button")
         .click()
       expect(localStorage.setItem).toBeCalledWith(
         "toggleKey",
         JSON.stringify(false)
       )
-      expect(component.getByTestId("toggle").textContent).toBe("false")
+      expect(getByTestId("toggle").textContent).toBe("false")
+    })
+  })
+
+  describe("with an undefined value", () => {
+    beforeEach(() => {
+      localStorage.__STORE__.clearKey = JSON.stringify("stored")
+    })
+
+    afterEach(() => {
+      localStorage.clear()
+    })
+
+    it("removes the item from local storage", () => {
+      const { getByTestId } = render(<Component />)
+      getByTestId("clear").click()
+      expect(localStorage.removeItem).toBeCalledWith("clearKey")
     })
   })
 })
