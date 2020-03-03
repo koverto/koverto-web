@@ -12,9 +12,9 @@ export class AuthLink extends ApolloLink {
     const token = this.tokenGetter()
 
     if (token) {
-      headers.authorization = `Bearer ${token}`
+      headers.Authorization = `Bearer ${token}`
     }
 
-    return headers
+    return { headers }
   }
 }

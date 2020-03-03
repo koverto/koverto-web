@@ -8,7 +8,7 @@ const token = [
 
 const doesNotHaveHeader = (tokenGetter: () => string) => (): void => {
   const link = new AuthLink(tokenGetter)
-  expect(link.setHeaders(null, {})).not.toHaveProperty("authorization")
+  expect(link.setHeaders(null, {}).headers).not.toHaveProperty("Authorization")
 }
 
 describe("AuthLink", () => {
@@ -17,7 +17,9 @@ describe("AuthLink", () => {
 
     it("sets the authorization header", () => {
       const link = new AuthLink(tokenGetter)
-      expect(link.setHeaders(null, {}).authorization).toBe(`Bearer ${token}`)
+      expect(link.setHeaders(null, {}).headers.Authorization).toBe(
+        `Bearer ${token}`
+      )
     })
   })
 
@@ -42,8 +44,10 @@ describe("AuthLink", () => {
 
     it("merges the headers", () => {
       const link = new AuthLink(tokenGetter)
-      expect(link.setHeaders(null, { headers: { foo: "bar" } })).toMatchObject({
-        authorization: `Bearer ${token}`,
+      expect(
+        link.setHeaders(null, { headers: { foo: "bar" } }).headers
+      ).toMatchObject({
+        Authorization: `Bearer ${token}`,
         foo: "bar",
       })
     })

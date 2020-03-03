@@ -42,7 +42,9 @@ export const Login = (): JSX.Element => {
   const [login, { data, loading, error }] = useMutation(LOGIN)
   const { setToken } = useSession()
 
-  data?.login?.token && setToken(data.login.token)
+  React.useEffect(() => data?.login?.token && setToken(data.login.token), [
+    data,
+  ])
 
   return (
     <UserForm
