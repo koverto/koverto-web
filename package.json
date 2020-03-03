@@ -22,7 +22,8 @@
   },
   "scripts": {
     "build": "webpack --config config/webpack.prod.js",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lint": "npm run eslint -- --fix",
+    "lint:nofix": "eslint . --ext .js,.jsx,.ts,.tsx",
     "start": "webpack-dev-server --config config/webpack.dev.js",
     "test": "jest"
   },
