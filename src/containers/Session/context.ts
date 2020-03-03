@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, createContext, useContext } from "react"
-import { ServerError } from "apollo-link-http-common"
 import { ErrorResponse } from "apollo-link-error"
+import { ServerError } from "apollo-link-http-common"
+import { createContext, Dispatch, SetStateAction, useContext } from "react"
 import { SessionProviderProps } from "./provider"
 
 export interface SessionProps extends SessionProviderProps {
@@ -39,6 +39,8 @@ export class Session implements SessionProps {
       this.setToken(null)
     }
   }
+
+  public logout = (): void => this.setToken(undefined)
 }
 
 export const SessionContext = createContext<Session | undefined>(undefined)

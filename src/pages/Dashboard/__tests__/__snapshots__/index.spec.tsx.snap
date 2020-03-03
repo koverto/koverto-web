@@ -2,8 +2,15 @@
 
 exports[`Dashboard matches the snapshot 1`] = `
 <div>
-  <h1>
-    Dashboard
-  </h1>
+  <div>
+    <h1>
+      Dashboard
+    </h1>
+    <a
+      href="/logout"
+    >
+      Logout
+    </a>
+  </div>
 </div>
 `;

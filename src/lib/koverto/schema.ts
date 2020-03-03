@@ -19,6 +19,10 @@ export interface LoginResponse {
   user: User
 }
 
+export interface LogoutResponse {
+  ok: boolean
+}
+
 export interface User extends UserInput {
   id: string
   createdAt: Date
