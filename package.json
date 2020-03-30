@@ -40,7 +40,7 @@
     "apollo-link-http-common": "^0.2.15",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
-    "react": "^16.13.0",
+    "react": "^16.13.1",
     "react-apollo-typed-hooks": "^1.0.0",
     "react-dom": "^16.13.0",
     "react-hook-form": "^5.1.1",
