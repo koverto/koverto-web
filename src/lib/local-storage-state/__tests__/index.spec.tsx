@@ -65,10 +65,7 @@ describe("useStateFromLocalStorage", () => {
   describe("with a static action", () => {
     it("sets the new value", () => {
       const component = render(<Component />)
-      component
-        .getByTestId("value")
-        .querySelector("button")
-        .click()
+      component.getByTestId("value").querySelector("button").click()
       expect(localStorage.setItem).toBeCalledWith(
         "valueKey",
         JSON.stringify("clicked")
@@ -81,18 +78,14 @@ describe("useStateFromLocalStorage", () => {
     it("sets the new value from the callback", () => {
       const { getByTestId } = render(<Component />)
 
-      getByTestId("toggle")
-        .querySelector("button")
-        .click()
+      getByTestId("toggle").querySelector("button").click()
       expect(localStorage.setItem).toBeCalledWith(
         "toggleKey",
         JSON.stringify(true)
       )
       expect(getByTestId("toggle").textContent).toBe("true")
 
-      getByTestId("toggle")
-        .querySelector("button")
-        .click()
+      getByTestId("toggle").querySelector("button").click()
       expect(localStorage.setItem).toBeCalledWith(
         "toggleKey",
         JSON.stringify(false)
