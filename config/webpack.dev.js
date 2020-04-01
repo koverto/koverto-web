@@ -4,7 +4,7 @@ const path = require("path")
 const { HotModuleReplacementPlugin, DefinePlugin } = require("webpack")
 const common = require("./webpack.common")
 
-const config = merge(common, {
+const config = merge.smart(common, {
   mode: "development",
   devtool: "cheap-module-eval-source-map",
   devServer: {
@@ -13,6 +13,14 @@ const config = merge(common, {
     port: process.env.PORT || 9000,
   },
   entry: ["./src/index.tsx"],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ["style-loader", "postcss-loader"],
+      },
+    ],
+  },
   plugins: [
     new HotModuleReplacementPlugin(),
     new DefinePlugin({
