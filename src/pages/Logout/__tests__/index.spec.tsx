@@ -4,13 +4,17 @@ import {
   RenderResult,
   waitFor,
 } from "@testing-library/react"
+import { GraphQLError } from "graphql"
 import * as React from "react"
 import { MemoryRouter } from "react-router-dom"
 import { Logout, QUERY } from ".."
 import { Session, SessionContext } from "../../../containers/Session/context"
+import { LogoutResponse } from "../../../lib/koverto"
 
 const setToken = jest.fn()
-const render = (result = {}): RenderResult =>
+const render = (
+  result: { data?: { logout: LogoutResponse }; errors?: GraphQLError[] } = {}
+): RenderResult =>
   _render(
     <SessionContext.Provider value={new Session({ setToken })}>
       <MockedProvider

@@ -4,11 +4,12 @@ import {
   RenderResult,
   waitFor,
 } from "@testing-library/react"
+import { GraphQLError } from "graphql"
 import * as React from "react"
 import { MemoryRouter } from "react-router-dom"
 import { onSubmit as _onSubmit, QUERY, SignUp } from ".."
 import { Session, SessionContext } from "../../../containers/Session/context"
-import { CredentialType } from "../../../lib/koverto"
+import { CredentialType, LoginResponse } from "../../../lib/koverto"
 
 describe("onSubmit", () => {
   const createUser = jest.fn()
@@ -32,7 +33,9 @@ describe("onSubmit", () => {
 })
 
 const setToken = jest.fn()
-const render = (result = {}): RenderResult =>
+const render = (
+  result: { data?: { createUser: LoginResponse }; errors?: GraphQLError[] } = {}
+): RenderResult =>
   _render(
     <SessionContext.Provider value={new Session({ setToken })}>
       <MockedProvider
@@ -84,10 +87,9 @@ describe("SignUp", () => {
   it("does not set the token if there is mutation result data containing an error", async () => {
     const { findByTestId } = render({
       errors: [
-        {
-          message: "could not create user",
-          path: ["createUser"],
-        },
+        new GraphQLError("could not create user", null, null, null, [
+          "createUser",
+        ]),
       ],
     })
 
@@ -114,6 +116,7 @@ describe("SignUp", () => {
             id: "7527500c-1238-496d-aba8-1d21b6325f83",
             name: "test",
             email: "test@test",
+            createdAt: new Date(),
           },
         },
       },
