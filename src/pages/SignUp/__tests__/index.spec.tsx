@@ -2,8 +2,7 @@ import { MockedProvider } from "@apollo/react-testing"
 import {
   render as _render,
   RenderResult,
-  wait,
-  waitForElement,
+  waitFor,
 } from "@testing-library/react"
 import * as React from "react"
 import { MemoryRouter } from "react-router-dom"
@@ -83,7 +82,7 @@ describe("SignUp", () => {
   })
 
   it("does not set the token if there is mutation result data containing an error", async () => {
-    const { getByTestId } = render({
+    const { findByTestId } = render({
       errors: [
         {
           message: "could not create user",
@@ -92,22 +91,22 @@ describe("SignUp", () => {
       ],
     })
 
-    const email = await waitForElement(() => getByTestId("email"))
-    const name = await waitForElement(() => getByTestId("name"))
-    const password = await waitForElement(() => getByTestId("password"))
-    const button = await waitForElement(() => getByTestId("submit"))
+    const email = await findByTestId("email")
+    const name = await findByTestId("name")
+    const password = await findByTestId("password")
+    const button = await findByTestId("submit")
 
     email.setAttribute("value", "test@test")
     name.setAttribute("value", "test")
     password.setAttribute("value", "P@55w0rd!")
     button.click()
 
-    await waitForElement(() => getByTestId("signup-error"))
+    await findByTestId("signup-error")
     expect(localStorage.setItem).not.toBeCalled()
   })
 
   it("sets the token if one is included with the mutation result data", async () => {
-    const { getByTestId } = render({
+    const { findByTestId } = render({
       data: {
         createUser: {
           token: "token",
@@ -120,16 +119,16 @@ describe("SignUp", () => {
       },
     })
 
-    const email = await waitForElement(() => getByTestId("email"))
-    const name = await waitForElement(() => getByTestId("name"))
-    const password = await waitForElement(() => getByTestId("password"))
-    const button = await waitForElement(() => getByTestId("submit"))
+    const email = await findByTestId("email")
+    const name = await findByTestId("name")
+    const password = await findByTestId("password")
+    const button = await findByTestId("submit")
 
     email.setAttribute("value", "test@test")
     name.setAttribute("value", "test")
     password.setAttribute("value", "P@55w0rd!")
     button.click()
 
-    await wait(() => expect(setToken).toBeCalledWith("token"))
+    await waitFor(() => expect(setToken).toBeCalledWith("token"))
   })
 })

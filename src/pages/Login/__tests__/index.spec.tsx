@@ -2,8 +2,7 @@ import { MockedProvider } from "@apollo/react-testing"
 import {
   render as _render,
   RenderResult,
-  wait,
-  waitForElement,
+  waitFor,
 } from "@testing-library/react"
 import * as React from "react"
 import { MemoryRouter } from "react-router-dom"
@@ -83,7 +82,7 @@ describe("Login", () => {
   })
 
   it("does not set the token if there is mutation result data containing an error", async () => {
-    const { getByTestId } = render({
+    const { findByTestId } = render({
       errors: [
         {
           message: "invalid e-mail address or password",
@@ -92,20 +91,20 @@ describe("Login", () => {
       ],
     })
 
-    const email = await waitForElement(() => getByTestId("email"))
-    const password = await waitForElement(() => getByTestId("password"))
-    const button = await waitForElement(() => getByTestId("submit"))
+    const email = await findByTestId("email")
+    const password = await findByTestId("password")
+    const button = await findByTestId("submit")
 
     email.setAttribute("value", "test@test")
     password.setAttribute("value", "P@55w0rd!")
     button.click()
 
-    await waitForElement(() => getByTestId("login-error"))
+    await findByTestId("login-error")
     expect(localStorage.setItem).not.toBeCalled()
   })
 
   it("sets the token if one is included with the mutation result data", async () => {
-    const { getByTestId } = render({
+    const { findByTestId } = render({
       data: {
         login: {
           token: "token",
@@ -118,14 +117,14 @@ describe("Login", () => {
       },
     })
 
-    const email = await waitForElement(() => getByTestId("email"))
-    const password = await waitForElement(() => getByTestId("password"))
-    const button = await waitForElement(() => getByTestId("submit"))
+    const email = await findByTestId("email")
+    const password = await findByTestId("password")
+    const button = await findByTestId("submit")
 
     email.setAttribute("value", "test@test")
     password.setAttribute("value", "P@55w0rd!")
     button.click()
 
-    await wait(() => expect(setToken).toBeCalledWith("token"))
+    await waitFor(() => expect(setToken).toBeCalledWith("token"))
   })
 })

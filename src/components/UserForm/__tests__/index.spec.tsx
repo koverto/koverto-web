@@ -1,4 +1,4 @@
-import { render, wait, waitForElement } from "@testing-library/react"
+import { render, waitFor } from "@testing-library/react"
 import * as React from "react"
 import { UserForm, UserFormFields } from ".."
 
@@ -24,53 +24,53 @@ describe("UserForm", () => {
   })
 
   it("requires the email field", async () => {
-    const { getByTestId, queryByTestId } = render(<Component />)
-    const button = await waitForElement(() => getByTestId("submit"))
+    const { findByTestId, queryByTestId } = render(<Component />)
+    const button = await findByTestId("submit")
 
     button.click()
 
-    await wait(() => expect(queryByTestId("email-error")).toBeTruthy())
+    await waitFor(() => expect(queryByTestId("email-error")).toBeTruthy())
     expect(onSubmit).not.toBeCalled()
   })
 
   it("requires the name field", async () => {
-    const { getByTestId, queryByTestId } = render(<Component />)
-    const button = await waitForElement(() => getByTestId("submit"))
+    const { findByTestId, queryByTestId } = render(<Component />)
+    const button = await findByTestId("submit")
 
     button.click()
 
-    await wait(() => expect(queryByTestId("name-error")).toBeTruthy())
+    await waitFor(() => expect(queryByTestId("name-error")).toBeTruthy())
     expect(onSubmit).not.toBeCalled()
   })
 
   it("requires the password field", async () => {
-    const { getByTestId, queryByTestId } = render(<Component />)
-    const button = await waitForElement(() => getByTestId("submit"))
+    const { findByTestId, queryByTestId } = render(<Component />)
+    const button = await findByTestId("submit")
 
     button.click()
 
-    await wait(() => expect(queryByTestId("password-error")).toBeTruthy())
+    await waitFor(() => expect(queryByTestId("password-error")).toBeTruthy())
     expect(onSubmit).not.toBeCalled()
   })
 
   it("calls the onSubmit callback", async () => {
-    const { getByTestId } = render(<Component />)
-    const email = await waitForElement(() => getByTestId("email"))
-    const name = await waitForElement(() => getByTestId("name"))
-    const password = await waitForElement(() => getByTestId("password"))
-    const button = await waitForElement(() => getByTestId("submit"))
+    const { findByTestId } = render(<Component />)
+    const email = await findByTestId("email")
+    const name = await findByTestId("name")
+    const password = await findByTestId("password")
+    const button = await findByTestId("submit")
 
     email.setAttribute("value", "test@test")
     name.setAttribute("value", "test")
     password.setAttribute("value", "P@55w0rd!")
     button.click()
 
-    await wait(() => expect(onSubmit).toBeCalled())
+    await waitFor(() => expect(onSubmit).toBeCalled())
   })
 
   it("disables the button while loading", async () => {
-    const { getByTestId } = render(<Component loading={true} />)
-    const button = await waitForElement(() => getByTestId("submit"))
+    const { findByTestId } = render(<Component loading={true} />)
+    const button = await findByTestId("submit")
     expect(button.getAttribute("disabled")).not.toBeNull()
   })
 })
