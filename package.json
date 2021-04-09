@@ -43,7 +43,7 @@
     "react": "^16.13.1",
     "react-apollo-typed-hooks": "^1.0.0",
     "react-dom": "^16.13.1",
-    "react-hook-form": "^5.2.0",
+    "react-hook-form": "^7.0.5",
     "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
